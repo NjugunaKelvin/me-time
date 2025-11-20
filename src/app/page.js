@@ -15,9 +15,9 @@ export default function Home() {
            a strong commitment to performance, efficiency, and user experience.
         </p>
         <br/> <br/>
-        <span className="font-extrabold text-white text-xl">1.1: My Stack</span>
-        <p className="text-amber-50">
-          hello
+        <span className="font-extrabold text-white text-xl">1.1: My Stack (Tools I work With)</span>
+        <p className=" py-2 text-xl text-amber-50">
+          I have worked with a number of different languages and different frameworks.
         </p>
       </div>
     </div>
