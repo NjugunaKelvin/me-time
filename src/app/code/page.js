@@ -1,38 +1,76 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import { snippets } from "@/data/content";
+/**
+ * Using Client Side rendering here for the interactivity of the copy button 
+ * and the heavy syntax highlighting library.
+ */
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useState } from "react";
+
+/**
+ * @component CodeBlock
+ * @description
+ * Reusable component for rendering syntax-highlighted code with a seamless copy experience.
+ * UI mimics a macOS terminal window for aesthetic consistency with the developer brand.
+ */
+const CodeBlock = ({ code, language }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset feedback after 2s
+    };
+
+    return (
+        <div className="bg-[#1e1e1e] rounded-md border border-gray-800 overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-2 bg-[#252526] border-b border-gray-800">
+                <div className="flex items-center gap-3">
+                    {/* Window Controls Decoration */}
+                    <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+                    </div>
+                    <span className="text-[10px] font-mono uppercase text-gray-500 ml-2">{language}</span>
+                </div>
+                <button
+                    onClick={handleCopy}
+                    className="text-[10px] font-mono uppercase tracking-wider text-gray-500 hover:text-white transition-colors flex items-center gap-1"
+                >
+                    {copied ? (
+                        <span className="text-green-500">Copied!</span>
+                    ) : (
+                        <span>Copy</span>
+                    )}
+                </button>
+            </div>
+            <div className="text-sm">
+                <SyntaxHighlighter
+                    language={language}
+                    style={vscDarkPlus}
+                    customStyle={{
+                        margin: 0,
+                        padding: '1.5rem',
+                        background: 'transparent',
+                        fontSize: '0.875rem',
+                        lineHeight: '1.5',
+                    }}
+                    showLineNumbers={true}
+                    lineNumberStyle={{ minWidth: "2em", paddingRight: "1em", color: "#6e7681", textAlign: "right" }}
+                >
+                    {code}
+                </SyntaxHighlighter>
+            </div>
+        </div>
+    );
+};
 
 export default function Code() {
-    const snippets = [
-        {
-            domain: "Concurrency",
-            title: "Lock-Free Ring Buffer",
-            description: "A single-producer, single-consumer circular buffer using atomic memory barriers to avoid mutex contentions in high-frequency trading contexts.",
-            why: "Standard Go interaction via channels introduced too much GC pressure at 100k msg/sec.",
-            link: "#"
-        },
-        {
-            domain: "Resilience",
-            title: "Circuit Breaker Middleware",
-            description: "Custom implementation of a state-machine based circuit breaker. Features half-open state testing and exponential backoff reset timers.",
-            why: "Needed fine-grained control over failure thresholds that off-the-shelf libraries didn't expose.",
-            link: "#"
-        },
-        {
-            domain: "Database",
-            title: "Hierarchical Indexing for Geospatial Data",
-            description: "Implementation of Quadtrees on top of a Key-Value store to enable efficient radius search without PostGIS.",
-            why: "Running full Postgres instances on edge devices was not feasible due to memory constraints.",
-            link: "#"
-        },
-        {
-            domain: "Systems",
-            title: "Custom Memory Allocator",
-            description: "Arena allocator for handling short-lived request objects in a C++ web server.",
-            why: "Heap fragmentation was causing long tail latencies after 24 hours of uptime.",
-            link: "#"
-        }
-    ];
-
     return (
         <div className="flex flex-col min-h-screen text-gray-400 font-sans selection:bg-amber-500/30">
             <Navbar />
@@ -42,9 +80,9 @@ export default function Code() {
                     <p className="text-gray-500 font-mono text-sm uppercase tracking-widest">Mastery demonstrated, not claimed.</p>
                 </header>
 
-                <div className="grid grid-cols-1 gap-12">
+                <div className="grid grid-cols-1 gap-16">
                     {snippets.map((item, idx) => (
-                        <div key={idx} className="group border-l-2 border-gray-800 hover:border-amber-500 pl-6 transition-colors duration-300">
+                        <div key={idx} className="pl-6 border-l-2 border-gray-800">
                             <div className="flex justify-between items-start mb-2">
                                 <span className="font-mono text-xs text-amber-500 uppercase tracking-wider">{item.domain}</span>
                                 <Link href={item.link} className="text-xs font-mono text-gray-600 hover:text-white transition-colors">
@@ -52,11 +90,15 @@ export default function Code() {
                                 </Link>
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                            <div className="space-y-4">
+                            <div className="space-y-6">
                                 <p className="text-gray-300 leading-relaxed">
                                     {item.description}
                                 </p>
-                                <div className="bg-[#1c1c1c] p-4 rounded-sm border border-gray-800">
+
+                                <CodeBlock code={item.code} language={item.language} />
+
+                                {/* Architectural commentary block - Adds depth beyond just viewing code */}
+                                <div className="bg-[#1c1c1c]/50 p-4 rounded-sm border-l-2 border-gray-700">
                                     <span className="text-gray-500 text-xs font-bold uppercase block mb-1">Architectural Decision</span>
                                     <p className="text-sm text-gray-400 italic">"{item.why}"</p>
                                 </div>

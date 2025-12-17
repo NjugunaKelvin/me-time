@@ -17,7 +17,6 @@ export default function Navbar() {
                     <li><Link className={`hover:text-amber-400 transition-all hover:scale-105 inline-block ${isActive('/code')}`} href='/code'>Code</Link></li>
                     <li><Link className={`hover:text-amber-400 transition-all hover:scale-105 inline-block ${isActive('/philosophy')}`} href='/philosophy'>Philosophy</Link></li>
                     <li><Link className={`hover:text-amber-400 transition-all hover:scale-105 inline-block ${isActive('/articles')}`} href='/articles'>Articles</Link></li>
-                    <li><Link className={`hover:text-amber-400 transition-all hover:scale-105 inline-block ${isActive('/uses')}`} href='/uses'>Uses</Link></li>
                     <li><Link className={`hover:text-amber-400 transition-all hover:scale-105 inline-block ${isActive('/contact')}`} href='/contact'>Reach out</Link></li>
                 </ul>
             </nav>

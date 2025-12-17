@@ -1,3 +1,19 @@
+/**
+ * @file content.js
+ * @description
+ * Single Source of Truth (SSoT) for the application's content data.
+ * 
+ * Architectural Decision:
+ * We are using a flat file data structure instead of a headless CMS (like Contentful or Sanity)
+ * or a database.
+ * 
+ * Reasoning:
+ * 1. Simplicity: Removes API latency and third-party dependencies during build time.
+ * 2. Version Control: Content changes are tracked via Git, providing atomic commits 
+ *    linking code changes with content updates.
+ * 3. Type Safety: Can be easily typed (if we switch to TS) without complex SDKs.
+ */
+
 export const projects = [
     {
         title: "Distributed RAG System",
@@ -222,5 +238,138 @@ export const articles = [
   
   Kafka supports exactly-once semantics, but it requires careful configuration of producers and consumers...
       `
+    }
+];
+
+export const snippets = [
+    {
+        domain: "Concurrency",
+        title: "Lock-Free Ring Buffer",
+        description: "A single-producer, single-consumer circular buffer using atomic memory barriers to avoid mutex contentions in high-frequency trading contexts.",
+        why: "Standard Go interaction via channels introduced too much GC pressure at 100k msg/sec.",
+        link: "#",
+        language: "go",
+        code: `// Single-producer, single-consumer lock-free queue
+type RingBuffer[T any] struct {
+    buffer []T
+    head   uint64
+    tail   uint64
+    mask   uint64
+}
+
+func (rb *RingBuffer[T]) Offer(item T) bool {
+    head := atomic.LoadUint64(&rb.head)
+    tail := atomic.LoadUint64(&rb.tail)
+    
+    // Check if buffer is full (head wrapped around and caught tail)
+    if head-tail >= uint64(len(rb.buffer)) {
+        return false 
+    }
+    
+    rb.buffer[head & rb.mask] = item
+    atomic.StoreUint64(&rb.head, head+1) // Release
+    return true
+}`
+    },
+    {
+        domain: "Resilience",
+        title: "Circuit Breaker Middleware",
+        description: "Custom implementation of a state-machine based circuit breaker. Features half-open state testing and exponential backoff reset timers.",
+        why: "Needed fine-grained control over failure thresholds that off-the-shelf libraries didn't expose.",
+        link: "#",
+        language: "javascript",
+        code: `class CircuitBreaker {
+  constructor(failureThreshold, resetTimeout) {
+    this.failureThreshold = failureThreshold;
+    this.resetTimeout = resetTimeout;
+    this.failures = 0;
+    this.state = 'CLOSED';
+    this.lastFailureTime = null;
+  }
+
+  async exec(command) {
+    if (this.state === 'OPEN') {
+      if (Date.now() - this.lastFailureTime > this.resetTimeout) {
+        this.state = 'HALF_OPEN';
+      } else {
+        throw new Error('Circuit is OPEN');
+      }
+    }
+
+    try {
+      const result = await command();
+      if (this.state === 'HALF_OPEN') {
+        this.reset();
+      }
+      return result;
+    } catch (e) {
+      this.recordFailure();
+      throw e;
+    }
+  }
+}`
+    },
+    {
+        domain: "Database",
+        title: "Hierarchical Indexing for Geospatial Data",
+        description: "Implementation of Quadtrees on top of a Key-Value store to enable efficient radius search without PostGIS.",
+        why: "Running full Postgres instances on edge devices was not feasible due to memory constraints.",
+        link: "#",
+        language: "python",
+        code: `class QuadTree:
+    def __init__(self, boundary, capacity):
+        self.boundary = boundary # Rect
+        self.capacity = capacity
+        self.points = []
+        self.divided = False
+
+    def insert(self, point):
+        if not self.boundary.contains(point):
+            return False
+
+        if len(self.points) < self.capacity:
+            self.points.append(point)
+            return True
+        else:
+            if not self.divided:
+                self.subdivide()
+            
+            return (self.northeast.insert(point) or
+                    self.northwest.insert(point) or
+                    self.southeast.insert(point) or
+                    self.southwest.insert(point))`
+    },
+    {
+        domain: "Systems",
+        title: "Custom Memory Allocator",
+        description: "Arena allocator for handling short-lived request objects in a C++ web server.",
+        why: "Heap fragmentation was causing long tail latencies after 24 hours of uptime.",
+        link: "#",
+        language: "cpp",
+        code: `class Arena {
+public:
+    void* alloc(size_t bytes) {
+        // Align to 8 bytes
+        size_t aligned = (bytes + 7) & ~7;
+        
+        if (ptr + aligned > end) {
+            // Fallback to new block or OS alloc
+            return grow(aligned);
+        }
+        
+        void* result = ptr;
+        ptr += aligned;
+        return result;
+    }
+    
+    void reset() {
+        ptr = buffer; // Instant deallocation of everything
+    }
+
+private:
+    char* buffer;
+    char* ptr;
+    char* end;
+};`
     }
 ];

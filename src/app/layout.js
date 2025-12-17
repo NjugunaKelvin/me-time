@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SocialSidebar from "@/components/SocialSidebar";
 import RightSidebar from "@/components/RightSidebar";
-import MobileFooter from "@/components/MobileFooter";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         <SocialSidebar />
         <RightSidebar />
         {children}
-        <MobileFooter />
+        <Footer />
       </body>
     </html>
   );

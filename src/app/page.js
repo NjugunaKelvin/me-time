@@ -1,6 +1,20 @@
 import Navbar from "@/components/Navbar";
 
+/**
+ * @component Home
+ * @description
+ * Entry point for the application. This page serves as a high-level executive summary
+ * of my technical profile.
+ * 
+ * Architectural Decision:
+ * We intentionally keep this content static and localized. For a personal portfolio,
+ * introducing a CMS or database layer adds unnecessary latency and maintenance overhead.
+ * The data structure is defined locally to ensure type safety (implicitly) and 
+ * rapid iteration during content updates.
+ */
 export default function Home() {
+  // Data is defined within the component scope to avoid global namespace pollution
+  // and keep the context tight.
   const stack = [
     { category: "Languages", items: "Python, JavaScript/TypeScript, Go, SQL (PostgreSQL)" },
     { category: "AI & ML", items: "PyTorch, TensorFlow, HuggingFace, LangChain, OpenAI API" },
