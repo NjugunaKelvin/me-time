@@ -16,25 +16,25 @@
 
 export const projects = [
     {
-        title: "Distributed RAG System",
-        tech: "Python, LangChain, Pinecone, FastAPI",
-        description: "Designed and implemented a scalable Retrieval-Augmented Generation system capable of processing 1M+ documents with sub-200ms query latency. Implemented hybrid search (dense + sparse) for improved relevance.",
-        link: "#",
-        category: "AI Engineering"
+        title: "Roavva",
+        tech: "Next.js, Node.js, Fastify, PostgreSQL, Typescript",
+        description: "Founded and developed an adventure and exploration platform that focuses on curating the moments that make life worth living.",
+        link: "https://roavva.com",
+        category: "Product Development"
     },
     {
-        title: "Real-time Anomaly Detection",
-        tech: "Go, Kafka, TensorFlow Serving",
-        description: "Built a streaming data pipeline to detect financial fraud anomalies in real-time. Utilized Kafka for high-throughput event ingestion and TensorFlow Serving for low-latency inference.",
-        link: "#",
-        category: "Backend Systems"
+        title: "Africorpus",
+        tech: "React, Kafka, Pandas/Numpy, PySpark",
+        description: "Founded africorpus to build rigorously curated, machine-readable datasets designed for training, evaluation, and alignment of modern AI models.",
+        link: "https://africorpus.netlify.app/",
+        category: "Data Engineering"
     },
     {
         title: "Autonomous Agent Orchestrator",
         tech: "TypeScript, Node.js, OpenAI",
         description: "Developed a framework for orchestrating multi-agent workflows. Features include dynamic tool selection, memory persistence with Redis, and a self-correction loop for code generation tasks.",
         link: "#",
-        category: "AI Engineering"
+        category: "Data Engineering"
     },
     {
         title: "High-Frequency Trading Engine",
@@ -44,32 +44,32 @@ export const projects = [
         category: "Systems Programming"
     },
     {
-        title: "Custom Kubernetes Operator",
-        tech: "Go, Kubernetes API, Docker",
-        description: "Built a custom K8s operator to manage the lifecycle of stateful ML training jobs. Automates checkpointing, spot instance interruption handling, and resource scaling.",
-        link: "#",
-        category: "DevOps/MLOps"
+        title: "Coastal Cleaning Services",
+        tech: "Next.js, TypeScript",
+        description: "A cleaning services company's landing page.",
+        link: "https://coastalservicescleaning.com/",
+        category: "Web Development"
     },
     {
-        title: "Distributed Key-Value Store",
-        tech: "Rust, Raft Consensus, gRPC",
-        description: "Implemented a distributed KV store from scratch to understand consensus algorithms. Features leader election, log replication, and snapshotting using the Raft protocol.",
-        link: "#",
-        category: "Systems Programming"
+        title: "IML impac",
+        tech: "Next.js, TypeScript, Tailwind",
+        description: "Integral Media's company website with a focus to communicate impact to the community.",
+        link: "https://iml-impact.netlify.app/",
+        category: "Web development"
     },
     {
-        title: "Video Content Search Engine",
-        tech: "Python, CLIP, FFmpeg, Opensearch",
+        title: "SpinGraphy creations",
+        tech: "Next.js, TypeScript, Tailwind",
         description: "Created a semantic search engine for video content. Extracts frames, generates embeddings using CLIP, and indexes them for natural language search queries against video libraries.",
-        link: "#",
-        category: "AI Engineering"
+        link: "",
+        category: "Web Development"
     },
     {
         title: "Serverless Image Processing Pipeline",
         tech: "AWS Lambda, S3, SQS, Python",
         description: "Architected a highly scalable image processing pipeline handling millions of uploads per day. Uses event-driven architecture to decouple uploads from processing logic.",
         link: "#",
-        category: "Cloud Architecture"
+        category: "Web Development"
     }
 ];
 

@@ -24,19 +24,19 @@ export default function Home() {
 
   const projects = [
     {
-      title: "Distributed RAG System",
-      tech: "Python, LangChain, Pinecone",
-      description: "Scalable Retrieval-Augmented Generation processing 1M+ documents with sub-200ms latency."
+      title: "Machine Tasks Protocol",
+      tech: "Node.js",
+      description: "A decentralized framework that standardizes secure machine-to-machine task delegation by combining cryptographic identity, strict data schemas, and transport-independent verification to ensure all autonomous interactions are mathematically provable and trustless."
     },
     {
-      title: "Real-time Anomaly Detection",
-      tech: "Go, Kafka, TensorFlow",
-      description: "Streaming pipeline for financial fraud detection handling 50k events/sec."
+      title: "Roavva",
+      tech: "Fastify, Next.js, PostgreSQL",
+      description: "An adventure and exploration platform that focuses on curating the moments that make life worth living"
     },
     {
-      title: "Autonomous Agent Orchestrator",
+      title: "Africorpus",
       tech: "TypeScript, OpenAI",
-      description: "Framework for multi-agent workflows with self-correction capabilities."
+      description: "A data platform for collecting and cleaning african context datasets."
     }
   ];
 
