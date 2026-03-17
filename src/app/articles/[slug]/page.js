@@ -14,20 +14,21 @@ export default async function ArticlePage({ params }) {
     // Simple Markdown Parser (very basic for this demo)
     const renderContent = (content) => {
         return content.split('\n').map((line, index) => {
-            if (line.startsWith('### ')) {
-                return <h3 key={index} className="text-xl font-bold text-amber-100 mt-6 mb-3">{line.replace('### ', '')}</h3>;
+            const trimmedLine = line.trim();
+            if (trimmedLine.startsWith('### ')) {
+                return <h3 key={index} className="text-xl font-bold text-amber-100 mt-6 mb-3">{trimmedLine.replace('### ', '')}</h3>;
             }
-            if (line.startsWith('## ')) {
-                return <h2 key={index} className="text-2xl font-bold text-amber-400 mt-8 mb-4 border-l-4 border-amber-600 pl-3">{line.replace('## ', '')}</h2>;
+            if (trimmedLine.startsWith('## ')) {
+                return <h2 key={index} className="text-2xl font-bold text-amber-400 mt-8 mb-4 border-l-4 border-amber-600 pl-3">{trimmedLine.replace('## ', '')}</h2>;
             }
-            if (line.startsWith('- **')) {
-                const parts = line.split('**');
+            if (trimmedLine.startsWith('- **')) {
+                const parts = trimmedLine.split('**');
                 return <li key={index} className="ml-6 list-disc mb-2 text-gray-300"><strong className="text-white">{parts[1]}</strong>{parts[2]}</li>;
             }
-            if (line.trim() === '') {
+            if (trimmedLine === '') {
                 return <br key={index} />;
             }
-            return <p key={index} className="text-gray-300 leading-relaxed mb-4 text-lg">{line}</p>;
+            return <p key={index} className="text-gray-300 leading-relaxed mb-4 text-lg">{trimmedLine}</p>;
         });
     };
 
