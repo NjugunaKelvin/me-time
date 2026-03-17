@@ -75,169 +75,223 @@ export const projects = [
 
 export const articles = [
     {
-        slug: "optimizing-vector-search",
-        title: "Optimizing Vector Search at Scale",
-        date: "Oct 12, 2024",
-        readTime: "8 min read",
-        summary: "Exploring HNSW vs IVF configurations for billion-scale datasets using Pinecone and Milvus.",
+        slug: "developers-assembling-not-building",
+        title: "Most Developers Are Not Building: They're Assembling",
+        date: "Mar 15, 2026",
+        readTime: "4 min read",
+        summary: "Why assembling pieces other people created isn't real engineering, and the long-term value of deep system understanding.",
         content: `
-  ## Introduction
-  
-  Vector databases have become the backbone of modern AI applications, especially with the rise of RAG (Retrieval-Augmented Generation). However, as your dataset grows from millions to billions of vectors, out-of-the-box configurations often fail to meet latency and recall requirements. In this post, we'll dive deep into the internals of vector indexing, specifically comparing HNSW (Hierarchical Navigable Small World) and IVF (Inverted File Index).
-  
-  ## HNSW: The Graph Approach
-  
-  HNSW is widely regarded as the state-of-the-art for approximate nearest neighbor search. It builds a multi-layer graph where lower layers contain more detailed connections.
-  
-  ### Pros:
-  - **High Recall:** Excellent accuracy even at high speeds.
-  - **Low Latency:** Traverses graphs efficiently.
-  
-  ### Cons:
-  - **Memory Usage:** The graph structure consumes significant RAM.
-  - **Build Time:** Constructing the index can be slow.
-  
-  ## IVF: The Clustering Approach
-  
-  IVF, or Inverted File Index, partitions the vector space into Voronoi cells (clusters). When a query comes in, it first finds the closest centroids and only searches vectors within those clusters.
-  
-  ### Pros:
-  - **Memory Efficient:** Requires less RAM than HNSW.
-  - **Fast Construction:** Quicker to build.
-  
-  ### Tuning for Scale
-  
-  When dealing with billion-scale datasets, a hybrid approach or careful tuning of HNSW parameters (like \`M\` and \`efConstruction\`) is crucial. We found that...
-      `
+I used to think I was building things.
+
+I wasn't. I was assembling pieces other people created: frameworks, APIs, templates, and calling it engineering. That realization hit hard, because the entire industry rewards that illusion. Ship fast, glue things together, move on.
+
+But assembling is not building.
+
+## Confronting the Unknown
+
+Building is when you understand the system deeply enough to break it, rebuild it, and improve it without relying on documentation as a crutch. Most developers avoid that level because it's uncomfortable. It forces you to confront how little you actually know.
+
+I've started shifting how I approach things. Instead of asking, "How do I use this?" I ask, "How does this work underneath?" Instead of stacking tools, I try to reduce them.
+
+## The Only Path That Compounds
+
+This is slower. It's also the only path that compounds.
+
+My working hypothesis: the developers who win long-term are not the fastest builders, they're the ones who understand systems deeply enough to bend them.
+
+I'm testing that.`
     },
     {
-        slug: "python-to-go-microservices",
-        title: "Why I Switched from Python to Go for Microservices",
-        date: "Sep 28, 2024",
+        slug: "founder-experience-scar-tissue",
+        title: "Founder Experience Is Not a Title: It's Scar Tissue",
+        date: "Feb 28, 2026",
+        readTime: "5 min read",
+        summary: "The harsh reality of building from zero. Ideas don't matter; execution under constraints, distribution, and persistence do.",
+        content: `
+People throw around "founder" like it's a badge.
+
+It's not. It's a record of mistakes you paid for in time, reputation, and opportunity cost.
+
+Building something from zero forces you into reality fast. No abstraction, no theory: just outcomes. Either people use what you built, or they don't. Either money comes in, or it doesn't.
+
+There's no hiding.
+
+## The Illusion of Ideas
+
+Working on my own ideas exposed how naive I was about "good ideas." Ideas don't matter. Distribution does. Timing does. Execution under constraints does.
+
+And most importantly, persistence under uncertainty.
+
+The hardest part isn't building. It's continuing when there's no signal that you're on the right path.
+
+## The Real Value
+
+My current belief: founder experience only has value if it changes how you operate. If you still think like an employee: waiting for direction, avoiding risk, then you didn't actually learn anything.
+
+I'm trying to extract the lessons, not just carry the label.`
+    },
+    {
+        slug: "ai-exposing-developers",
+        title: "AI Is Not Replacing You: It's Exposing You",
+        date: "Jan 14, 2026",
+        readTime: "4 min read",
+        summary: "AI didn't create the weakness of predictable, repetitive coding; it revealed it. How to transition from code execution to system judgment.",
+        content: `
+There's a lot of noise about AI replacing developers.
+
+I think that's the wrong frame.
+
+AI is exposing who actually understands what they're doing.
+
+## Fragile Value vs Defensible Value
+
+If your value is writing predictable, repetitive code, then yes, you're at risk. But that was always fragile value. AI didn't create the weakness; it revealed it.
+
+What AI does well is execution. What it doesn't do well (yet) is judgment.
+
+Knowing what to build, why it matters, what tradeoffs to accept, what to ignore: that's still human. And it's where most developers are weak, because they've trained themselves to follow instructions, not make decisions.
+
+## Reframing Leverage
+
+I've started using AI differently. Not as a replacement, but as leverage. It compresses time. It removes friction. But it also forces me to think more clearly, because vague thinking produces useless output.
+
+Hypothesis: AI will not eliminate developers. It will split them into two groups: those who direct systems, and those who are replaced by them.
+
+I'm positioning for the first group.`
+    },
+    {
+        slug: "systems-thinking-compounds",
+        title: "Systems Thinking Is the Only Skill That Compounds",
+        date: "Dec 05, 2025",
         readTime: "6 min read",
-        summary: "A deep dive into performance benchmarks, concurrency patterns, and the developer experience of migrated services.",
+        summary: "Tools change, systems don't. Why stepping back to understand inputs, outputs, constraints, and feedback loops is the true path to progress.",
         content: `
-  ## The Bottleneck
-  
-  Our data ingestion pipeline was written in Python. It served us well for years, but as our throughput hit 50k events per second, the Global Interpreter Lock (GIL) became a massive hurdle. We were spinning up dozens of instances just to utilize multi-core CPUs efficiently.
-  
-  ## Enter Go
-  
-  Go (Golang) caught our eye with its promise of performant concurrency via Goroutines and Channels.
-  
-  ### The Migration Process
-  
-  We picked a non-critical service—the log aggregator—as our pilot project. The rewrite took 3 days. The results were staggering:
-  
-  - **CPU Usage:** Dropped by 60%.
-  - **Memory Footprint:** Reduced by 40%.
-  - **Tail Latency:** p99 latency went from 200ms to 15ms.
-  
-  ## Concurrency Patterns
-  
-  Python's \`asyncio\` is great, but Go's model feels much more natural for backend systems engineering...
-      `
+Most people focus on tools.
+
+New framework. New language. New trend.
+
+That's short-term thinking.
+
+Tools change. Systems don't.
+
+## The Core Principles
+
+Once I started thinking in systems (inputs, outputs, constraints, feedback loops) everything became clearer. Whether it's a product, a business, or even personal growth, the same principles apply.
+
+If something isn't working, it's not random. There's a bottleneck. There's a broken feedback loop. There's a misaligned incentive.
+
+The problem is, systems thinking is harder. It requires stepping back instead of jumping into action. And it forces you to see uncomfortable truths: like realizing the system you built is fundamentally flawed.
+
+## Applying It Everywhere
+
+Right now, I'm trying to apply this everywhere:
+
+- **In code:** designing for simplicity and scale
+- **In products:** focusing on real user behavior, not assumptions
+- **In my own life:** identifying where I'm wasting effort with no return
+
+Working theory: if you understand systems deeply, you don't need to chase opportunities: you can create them.`
     },
     {
-        slug: "attention-mechanisms-explained",
-        title: "Understanding Attention Mechanisms in Transformers",
-        date: "Aug 15, 2024",
-        readTime: "12 min read",
-        summary: "Visualizing Q, K, V matrices and understanding how self-attention actually works under the hood.",
+        slug: "playing-the-wrong-game",
+        title: "I'm Not Behind: I've Just Been Playing the Wrong Game",
+        date: "Nov 20, 2025",
+        readTime: "5 min read",
+        summary: "Questioning the premise of feeling behind. Why optimizing for depth, autonomy, and original thinking beats chasing credentials.",
         content: `
-  ## Beyond Recurrence
-  
-  Before Transformers, RNNs and LSTMs were the kings of NLP. They processed data sequentially, which made parallelization impossible. The "Attention Is All You Need" paper changed everything.
-  
-  ## The Q, K, V Metaphor
-  
-  Think of a database:
-  - **Query (Q):** What you are looking for.
-  - **Key (K):** The label or ID of the data in the DB.
-  - **Value (V):** The actual content.
-  
-  In self-attention, every token in a sentence produces these three vectors. The attention score is calculated by taking the dot product of the Query with all Keys...
-  
-  ## Multi-Head Attention
-  
-  Why settle for one perspective? Multi-head attention allows the model to focus on different parts of the sentence simultaneously (e.g., one head implementation syntax, another semantics)...
-      `
+There's this constant pressure to feel behind.
+
+Someone is earning more. Building faster. Getting hired by better companies.
+
+For a while, I bought into that.
+
+But I've started questioning the premise.
+
+Behind… compared to what? And according to who?
+
+## Invisible Tradeoffs
+
+Most of the benchmarks people use are based on visible outcomes, not underlying reality. You don't see the tradeoffs, the constraints, or the long-term viability of those paths.
+
+What I've realized is this: I wasn't behind. I was just optimizing for the wrong things.
+
+Chasing credentials instead of capability.
+Speed instead of depth.
+Approval instead of autonomy.
+
+## Recalibrating
+
+Now I'm recalibrating.
+
+Fewer distractions. More focus on leverage.
+Less noise. More signal.
+Less imitation. More original thinking.
+
+This is not comfortable. It feels slower, and sometimes it looks like I'm not progressing.
+
+But my hypothesis is simple: if I get the fundamentals right (thinking, systems, execution) the results will follow.
+
+And if they don't, at least I'll know I wasn't just playing someone else's game.`
     },
     {
-        slug: "database-internals-lsm-vs-btree",
-        title: "Database Internals: LSM Trees vs B-Trees",
-        date: "Jul 22, 2024",
-        readTime: "10 min read",
-        summary: "When to use what? Analyzing write-heavy vs read-heavy workloads in storage engines.",
+        slug: "illusion-of-productivity",
+        title: "The Illusion of Productivity: Movement is Not Progress",
+        date: "Oct 10, 2025",
+        readTime: "4 min read",
+        summary: "Reflecting on how busyness can mask a lack of impact, and why doing less can often mean achieving more.",
         content: `
-  ## The Storage Engine Dilemma
-  
-  When choosing a database, you're essentially choosing a storage engine. The two dominant data structures are B-Trees (used in Postgres, MySQL) and Log-Structured Merge (LSM) Trees (used in Cassandra, RocksDB).
-  
-  ## B-Trees: Read Optimized
-  
-  B-Trees are balanced tree data structures that maintain sorted data and allow for searches, sequential access, insertions, and deletions in logarithmic time. They are great for read-heavy workloads because...
-  
-  ## LSM Trees: Write Optimized
-  
-  LSM trees buffer writes in memory (MemTable) and flush them to disk (SSTables) in a sequential manner. This makes them incredibly fast for write-heavy applications like activity logs or time-series data...
-      `
+We live in an era where activity is mistaken for value.
+
+For years, I measured my days by how exhausted I was. High commit counts, back-to-back meetings, endless tickets moved from 'In Progress' to 'Done'. It felt like I was moving mountains.
+
+But I was just moving dirt.
+
+## The Trap of Busyness
+
+Busyness is seductive because it feels like progress. It releases dopamine. It tells your brain you are indispensable. But movement without direction is just friction.
+
+When you're constantly rushing, you lose the ability to ask the most important question: *Should this be done at all?*
+
+Most "urgent" work is just poorly planned work.
+
+## Optimizing for Impact
+
+I've started ruthlessly auditing my output. If a task doesn't move the needle on a core objective, it shouldn't exist. Not, "it should be done later." It should be deleted.
+
+This requires immense professional discipline. It means saying no to things that sound good. It means accepting periods of quiet deep work that don't look "productive" to an external observer.
+
+My current philosophy: The goal is not to do more. The goal is to do the few things that render everything else irrelevant.`
     },
     {
-        slug: "designing-rate-limiter",
-        title: "System Design: Designing a Distributed Rate Limiter",
-        date: "Jun 10, 2024",
-        readTime: "15 min read",
-        summary: "Token Bucket vs Leaky Bucket. Redis Lua scripts vs Envoy sidecars. A comprehensive guide.",
+        slug: "overengineering-defense-mechanism",
+        title: "Over-Engineering as a Defense Mechanism",
+        date: "Sep 15, 2025",
+        readTime: "5 min read",
+        summary: "Why we build complex systems when simple ones will do, and how fear of the unknown drives architectural bloat.",
         content: `
-  ## Why Rate Limit?
-  
-  To prevent abuse (DDoS), manage costs, and ensure fairness among users.
-  
-  ## Algorithms
-  
-  ### Token Bucket
-  Imagine a bucket that gets filled with tokens at a constant rate. Each request removes a token. If the bucket is empty, the request is dropped.
-  
-  ### Sliding Window
-  ...
-  
-  ## Implementation with Redis
-  
-  A common pattern is using Redis to store counters. However, race conditions are a risk. Using Lua scripts ensures atomicity...
-      `
-    },
-    {
-        slug: "raft-consensus-simplified",
-        title: "Raft Consensus Algorithm Simplified",
-        date: "May 05, 2024",
-        readTime: "9 min read",
-        summary: "Leader election, Log replication, and Safety. Making sense of distributed consensus.",
-        content: `
-  ## The Problem of Consensus
-  
-  In a distributed system, getting multiple nodes to agree on a shared state (like "x is now 5") is notoriously hard when failures occur. Paxos was the standard but was famously difficult to understand. Enter Raft.
-  
-  ## Leader Election
-  
-  Raft assigns one node as the Leader. All writes go to the leader. The leader replicates these to Followers. If the leader dies, a timeout triggers a new election...
-      `
-    },
-    {
-        slug: "kafka-event-driven",
-        title: "Building Reliable Event-Driven Architectures with Kafka",
-        date: "Apr 18, 2024",
-        readTime: "7 min read",
-        summary: "Handling idempotent processing, dead letter queues, and schema evolution.",
-        content: `
-  ## Decoupling Services
-  
-  Microservices shouldn't call each other directly for everything. That creates tight coupling. Instead, emit an event ("OrderPlaced") and let other services listen...
-  
-  ## Exactly-Once Processing
-  
-  Kafka supports exactly-once semantics, but it requires careful configuration of producers and consumers...
-      `
+I've reviewed hundreds of architectures, and I've noticed a pattern.
+
+The most complex systems aren't built by the smartest engineers. They're built by the most anxious ones.
+
+Over-engineering is rarely about technical excellence. It's almost always an emotional response. It's a defense mechanism against uncertainty.
+
+## Designing for Fear
+
+When we don't know exactly how a product will be used, we abstract everything. We build microservices for scale we don't have. We introduce message queues for traffic that doesn't exist. We abstract databases just in case we need to switch from Postgres to Mongo next week (spoiler: we won't).
+
+This isn't architecture. This is hoarding generic solutions.
+
+Every abstraction is a liability. Every layer of indirection is a place for a bug to hide.
+
+## The Courage to Be Simple
+
+It takes profound confidence to build a boring solution. To look at a complex problem and say, "A simple monolith and a well-indexed Postgres table will solve this for the next two years."
+
+Boring architectures are resilient. Boring architectures are maintainable. Boring architectures actually ship.
+
+I'm actively working on pruning my instinct to abstract. If the simple solution breaks because we grew too fast, that's a luxury problem to have. We can fix it then.
+
+Until then: do less, but do it better.`
     }
 ];
 

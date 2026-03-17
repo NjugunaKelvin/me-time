@@ -32,6 +32,9 @@ export default async function ArticlePage({ params }) {
         });
     };
 
+    // Get 2 more articles to read
+    const moreArticles = articles.filter((a) => a.slug !== slug).slice(0, 2);
+
     return (
         <div className="flex flex-col min-h-screen text-gray-300 font-sans selection:bg-amber-500/30">
             <Navbar />
@@ -53,6 +56,33 @@ export default async function ArticlePage({ params }) {
                 <article className="prose prose-invert prose-amber max-w-none">
                     {renderContent(article.content)}
                 </article>
+
+                {/* More to Read Section */}
+                <div className="mt-24 pt-10 border-t border-gray-800">
+                    <h3 className="text-2xl font-bold text-white mb-8">More to read</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {moreArticles.map((moreArticle, idx) => (
+                            <Link href={`/articles/${moreArticle.slug}`} key={idx} className="block group">
+                                <article className="bg-[#0a0a0a] p-6 rounded-2xl border border-gray-800 hover:border-amber-500/50 transition-all duration-300 h-full flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-3 text-xs font-mono text-gray-500 mb-3">
+                                            <span>{moreArticle.date}</span>
+                                        </div>
+                                        <h4 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-3">
+                                            {moreArticle.title}
+                                        </h4>
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                                            {moreArticle.summary}
+                                        </p>
+                                    </div>
+                                    <span className="text-xs font-mono text-amber-500/0 group-hover:text-amber-500 transition-all duration-300">
+                                        READ ARTICLE ↗
+                                    </span>
+                                </article>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
             </main>
         </div>
     );
