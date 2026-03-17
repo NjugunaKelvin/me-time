@@ -70,45 +70,97 @@ export default function Contact() {
                                 Latest Thoughts
                             </h3>
 
-                            <div className="space-y-6">
+                            <div className="space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar" style={{ scrollbarWidth: 'thin', scrollbarColor: '#4b5563 transparent' }}>
+                                {/* Tweet 1 */}
                                 <div className="group cursor-pointer">
                                     <div className="flex justify-between items-start mb-2">
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs font-bold text-white font-mono">V</div>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
                                             <div>
-                                                <p className="text-sm font-bold text-white leading-none">Njuguna Kelvin (Vin)</p>
-                                                <p className="text-xs text-gray-500">@NjugunaVin</p>
+                                                <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
+                                                <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
                                             </div>
                                         </div>
-                                        <span className="text-xs text-gray-600">2h</span>
+                                        <span className="text-xs text-gray-600">Jan 12</span>
                                     </div>
-                                    <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                                        Most "scalability" problems are actually just unoptimized queries or bad data models involved in a heavy N+1 loop. Fix the foundation before you shard the database.
-                                        <span className="text-amber-500 ml-1">#SystemDesign</span>
+                                    <p className="text-gray-300 text-sm leading-relaxed mb-3 whitespace-pre-wrap">
+                                        Tech has to be one of the most humbling niches. Each and every day you're reminded how much you don't know.<br/><br/>The skill actually is learning how to learn.<br/>
+                                        <span className="text-amber-500">#Tech</span> <span className="text-amber-500">#programming</span>
                                     </p>
                                     <div className="flex gap-4 text-xs text-gray-600">
-                                        <span className="hover:text-amber-500 transition-colors">12 Replies</span>
-                                        <span className="hover:text-green-500 transition-colors">45 Reposts</span>
-                                        <span className="hover:text-red-500 transition-colors">128 Likes</span>
+                                        <span className="hover:text-green-500 transition-colors">1 Repost</span>
+                                        <span className="hover:text-red-500 transition-colors">5 Likes</span>
+                                        <span className="hover:text-blue-500 transition-colors">108 Views</span>
                                     </div>
                                 </div>
 
                                 <div className="h-px bg-gray-800/50"></div>
 
-                                <div className="group cursor-pointer opacity-75 hover:opacity-100 transition-opacity">
+                                {/* Tweet 2 */}
+                                <div className="group cursor-pointer opacity-90 hover:opacity-100 transition-opacity">
                                     <div className="flex justify-between items-start mb-2">
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs font-bold text-white font-mono">V</div>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
                                             <div>
-                                                <p className="text-sm font-bold text-white leading-none">Njuguna Kelvin (Vin)</p>
-                                                <p className="text-xs text-gray-500">@NjugunaVin</p>
+                                                <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
+                                                <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
                                             </div>
                                         </div>
-                                        <span className="text-xs text-gray-600">Yesterday</span>
+                                        <span className="text-xs text-gray-600">Dec 10, 2025</span>
                                     </div>
-                                    <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                                        Just shipped the new distributed lock manager. Redis Redlock is great, but rolling your own Raft implementation teaches you why consensus is hard.
+                                    <p className="text-gray-300 text-sm leading-relaxed mb-3 whitespace-pre-wrap">
+                                        It's all about staying in the game long enough for skill and timing to collide. And everyone will say it's luck, but deep down it's not..
                                     </p>
+                                    <div className="flex gap-4 text-xs text-gray-600">
+                                        <span className="hover:text-red-500 transition-colors">5 Likes</span>
+                                        <span className="hover:text-blue-500 transition-colors">195 Views</span>
+                                    </div>
+                                </div>
+
+                                <div className="h-px bg-gray-800/50"></div>
+
+                                {/* Tweet 3 */}
+                                <div className="group cursor-pointer opacity-90 hover:opacity-100 transition-opacity">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
+                                            <div>
+                                                <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
+                                                <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
+                                            </div>
+                                        </div>
+                                        <span className="text-xs text-gray-600">Nov 26, 2025</span>
+                                    </div>
+                                    <p className="text-gray-300 text-sm leading-relaxed mb-3 whitespace-pre-wrap">
+                                        The world keeps widening.<br/>With every step, I discover how little I’ve touched.
+                                    </p>
+                                    <div className="flex gap-4 text-xs text-gray-600">
+                                        <span className="hover:text-red-500 transition-colors">4 Likes</span>
+                                        <span className="hover:text-blue-500 transition-colors">207 Views</span>
+                                    </div>
+                                </div>
+
+                                <div className="h-px bg-gray-800/50"></div>
+
+                                {/* Tweet 4 */}
+                                <div className="group cursor-pointer opacity-90 hover:opacity-100 transition-opacity">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
+                                            <div>
+                                                <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
+                                                <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
+                                            </div>
+                                        </div>
+                                        <span className="text-xs text-gray-600">Mar 7, 2025</span>
+                                    </div>
+                                    <p className="text-gray-300 text-sm leading-relaxed mb-3 whitespace-pre-wrap">
+                                        It's Jus' a matter of time... Everything will fall into place 💪😊
+                                    </p>
+                                    <div className="flex gap-4 text-xs text-gray-600">
+                                        <span className="hover:text-red-500 transition-colors">4 Likes</span>
+                                        <span className="hover:text-blue-500 transition-colors">191 Views</span>
+                                    </div>
                                 </div>
                             </div>
 
