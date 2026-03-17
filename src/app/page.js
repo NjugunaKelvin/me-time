@@ -24,19 +24,23 @@ export default function Home() {
 
   const projects = [
     {
+      title: "Roavva",
+      subtitle: "Founder & Lead Engineer",
+      tech: "Fastify, Next.js, PostgreSQL",
+      description: "Founded and developed an adventure and exploration company pushing the boundaries of how people discover, book, and experience the world. Architected the entire platform—from the high-performance booking engine to distributed payment flows—handling everything from zero to scale.",
+      link: "https://roavva.com"
+    },
+    {
       title: "Machine Tasks Protocol",
       tech: "Node.js",
       description: "A decentralized framework that standardizes secure machine-to-machine task delegation by combining cryptographic identity, strict data schemas, and transport-independent verification to ensure all autonomous interactions are mathematically provable and trustless."
     },
     {
-      title: "Roavva",
-      tech: "Fastify, Next.js, PostgreSQL",
-      description: "An adventure and exploration platform that focuses on curating the moments that make life worth living"
-    },
-    {
       title: "Africorpus",
+      subtitle: "Founder & Data Engineer",
       tech: "TypeScript, OpenAI",
-      description: "A data platform for collecting and cleaning african context datasets."
+      description: "Founded and engineered a data platform built to rigorously curate, clean, and organize African context datasets for modern AI model alignment and evaluation.",
+      link: "https://africorpus.netlify.app/"
     }
   ];
 
@@ -52,9 +56,8 @@ export default function Home() {
         <section className="mb-16">
           <h2 className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-6">About</h2>
           <p className="text-lg leading-relaxed text-gray-300">
-            Full-Stack Developer and AI/ML practitioner building scalable solutions for complex problems.
-            I combine technical rigor with strategic thinking to drive impact, translating AI innovations
-            into practical, high-performance applications.
+            Founder and Systems Engineer building resilient, highly scalable platforms for complex problems.
+            I combine technical rigor with an entrepreneurial focus on distribution and execution, currently translating deep technical architecture into high-performance realities as the Founder of Roavva.
           </p>
         </section>
 
@@ -71,13 +74,31 @@ export default function Home() {
         </section>
 
         <section className="mb-16">
-          <h2 className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-6">Selected Works</h2>
-          <div className="space-y-10">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-6">Companies & Core Projects</h2>
+          <div className="space-y-12">
             {projects.map((project, idx) => (
-              <div key={idx} className="group">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">{project.title}</h3>
-                <p className="text-gray-400 mb-1">{project.description}</p>
-                <p className="text-xs font-mono text-gray-600">{project.tech}</p>
+              <div key={idx} className="group relative">
+                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                  <h3 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors flex items-center gap-3">
+                    {project.link ? (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-2">
+                            {project.title}
+                            <svg className="w-4 h-4 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
+                    ) : (
+                        project.title
+                    )}
+                    {project.subtitle && (
+                        <span className="text-xs font-mono font-normal tracking-wide px-2 py-1 bg-amber-500/10 text-amber-500 rounded-full border border-amber-500/20">
+                            {project.subtitle}
+                        </span>
+                    )}
+                  </h3>
+                </div>
+                <p className="text-gray-400 mb-3 leading-relaxed">{project.description}</p>
+                <p className="text-xs font-mono text-gray-600 tracking-wide">{project.tech}</p>
               </div>
             ))}
           </div>

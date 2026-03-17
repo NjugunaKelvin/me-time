@@ -18,16 +18,16 @@ export const projects = [
     {
         title: "Roavva",
         tech: "Next.js, Node.js, Fastify, PostgreSQL, Typescript",
-        description: "Founded and developed an adventure and exploration platform that focuses on curating the moments that make life worth living.",
+        description: "Founded and developed an adventure and exploration company pushing the boundaries of how people discover, book, and experience the world.",
         link: "https://roavva.com",
-        category: "Product Development"
+        category: "Founder & Product Development"
     },
     {
         title: "Africorpus",
         tech: "React, Kafka, Pandas/Numpy, PySpark",
-        description: "Founded africorpus to build rigorously curated, machine-readable datasets designed for training, evaluation, and alignment of modern AI models.",
+        description: "Founded and engineered Africorpus to build rigorously curated, machine-readable datasets designed for training, evaluation, and alignment of modern AI models.",
         link: "https://africorpus.netlify.app/",
-        category: "Data Engineering"
+        category: "Founder & Data Engineering"
     },
     {
         title: "Autonomous Agent Orchestrator",
