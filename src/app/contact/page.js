@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Contact() {
     return (
@@ -48,10 +49,10 @@ export default function Contact() {
                                 <span className="font-mono text-sm tracking-wide">njugunak349@gmail.com</span>
                                 <span className="text-gray-500 group-hover:translate-x-1 transition-transform">→</span>
                             </a>
-                            <div className="flex items-center gap-2 mt-4 ml-4">
+                            {/* <div className="flex items-center gap-2 mt-4 ml-4">
                                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                                 <p className="text-xs text-gray-500 font-mono">Status: Remote & Asynchronous</p>
-                            </div>
+                            </div> */}
                         </motion.div>
                     </div>
 
@@ -75,7 +76,9 @@ export default function Contact() {
                                 <div className="group cursor-pointer">
                                     <div className="flex justify-between items-start mb-2">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
+                                            <div className="w-10 h-10 rounded-full overflow-hidden relative border border-gray-800">
+                                                <Image src="/images/me.jpeg" alt="Vin" fill className="object-cover" />
+                                            </div>
                                             <div>
                                                 <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
                                                 <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
@@ -100,7 +103,9 @@ export default function Contact() {
                                 <div className="group cursor-pointer opacity-90 hover:opacity-100 transition-opacity">
                                     <div className="flex justify-between items-start mb-2">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
+                                            <div className="w-10 h-10 rounded-full overflow-hidden relative border border-gray-800">
+                                                <Image src="/images/me.jpeg" alt="Vin" fill className="object-cover" />
+                                            </div>
                                             <div>
                                                 <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
                                                 <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
@@ -123,7 +128,9 @@ export default function Contact() {
                                 <div className="group cursor-pointer opacity-90 hover:opacity-100 transition-opacity">
                                     <div className="flex justify-between items-start mb-2">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
+                                            <div className="w-10 h-10 rounded-full overflow-hidden relative border border-gray-800">
+                                                <Image src="/images/me.jpeg" alt="Vin" fill className="object-cover" />
+                                            </div>
                                             <div>
                                                 <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
                                                 <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
@@ -146,7 +153,9 @@ export default function Contact() {
                                 <div className="group cursor-pointer opacity-90 hover:opacity-100 transition-opacity">
                                     <div className="flex justify-between items-start mb-2">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white font-mono">V</div>
+                                            <div className="w-10 h-10 rounded-full overflow-hidden relative border border-gray-800">
+                                                <Image src="/images/me.jpeg" alt="Vin" fill className="object-cover" />
+                                            </div>
                                             <div>
                                                 <p className="text-sm font-bold text-white leading-none">Vin 😉</p>
                                                 <p className="text-xs text-gray-500 mt-1">@NjugunaVin</p>
@@ -166,7 +175,7 @@ export default function Contact() {
 
                             <div className="mt-8 pt-6 border-t border-gray-800 text-center">
                                 <a
-                                    href="https://x.com"
+                                    href="https://x.com/NjugunaVin"
                                     target="_blank"
                                     className="inline-block text-sm font-bold text-white bg-white/10 hover:bg-white/20 px-6 py-2 rounded-full transition-all duration-300"
                                 >
